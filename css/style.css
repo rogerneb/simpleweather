@@ -1,0 +1,85 @@
+/*GENERAL*/
+* {
+  font-family: 'Oswald', sans-serif;
+  color: white;
+  text-align: center;
+}
+
+body {
+  zoom: 1.5;
+  background: #305B89;
+}
+
+header {
+  font-size: 4.5em;
+  text-shadow: 1px 1px 1px black;
+}
+
+/*Headline*/
+#headline {
+  font-style: italic;
+  font-size: 2em;
+}
+
+/*Date*/
+.date {
+  font-weight: 700;
+  font-size: 2.5em;
+}
+
+
+/*TEMPERATURES*/
+.tempmin { color: white;}
+.tempmax { color: white;}
+.tempmax-arrow { color: red;}
+.tempmin-arrow { color: green;}
+.tempmin, .tempmax, .temp-separator {
+  font-weight: bold;
+  font-size: 2.1em;
+}
+
+/*Phrase*/
+.phrase {
+  font-style: italic;
+  font-size: 2.1em;
+}
+
+
+/*Day box*/
+.day {
+  display: flex;
+  align-items: center;
+  margin: 15px 10px;
+  border-radius: 5px;
+  border: .2em solid rgba(104, 184, 242, .9);
+  height: 14em;
+
+  background: rgba(104, 184, 242, .7);
+}
+
+.day img {
+  margin-left: -1em;
+  width: 19em;
+}
+
+
+/*More info button*/
+#moreinfo{
+    margin: 15px 10px;
+    border-radius: 5px;
+    border: 5px solid rgba(104, 184, 242, .9);
+    background: #3498db;
+    color: #ffffff;
+    font-size: 4em;
+}
+
+#moreinfo a {
+  text-decoration: none;
+}
+
+
+
+footer {
+  margin: 25px;
+
+}
