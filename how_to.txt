@@ -1,0 +1,27 @@
+How to implement the application on your server.
+
+What do i need?
+- A web server with http or https. If you work locally you can use XAMPP or
+similar.
+- An account at developer.accuweather.com.
+- An APIKEY from developer.accuweather.com. You can get it for free but
+with limited usage. Consult documentation to know what the limitations are and
+how to get the APIKEY.
+- A text editor.
+
+How do I set up the application?
+- Open the index.html file with a text editor and modify the <title> and
+<header> as you see fit, as well as anything you want to change.
+- Open the js/weather.js file and modify:
+   - city_code for the locality that wants to see the weather forecast.
+   - api_key for which he has succeeded at developer.accuweather.com
+   - language for the language in which you want the application to work.
+   - metric set true if you want to use the decimal or false metric system
+    otherwise.
+   - production set the value to 1 when you want to use the application in
+     production. If you set any other value the application will read a local
+     json test file.
+
+How do I get the city code?
+Go to accuweather.com and search for a location. Look at the numeric code that
+appears in the URL of your browser. This code is the locality code.

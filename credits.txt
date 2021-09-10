@@ -1,1 +1,1 @@
-icons: https://github.com/andersonprante/pwa-weather-simple
+Icons by: https://github.com/andersonprante/pwa-weather-simple
