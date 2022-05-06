@@ -5,7 +5,6 @@ var language = "en"; //en (english), es (spanish), ca (catalan), fr (french), it
 var metric = "true"; //true for Metric system
 var production = 0; //1 production on | anithing else: develop mode. In develop mode the code reads an example json file.
 
-
 if (production == 1) {
 	var data_url = "https://dataservice.accuweather.com/forecasts/v1/daily/5day/"+city_code+"?apikey="+api_key+"&language="+language+"&metric="+metric;
 }else{
@@ -13,20 +12,34 @@ if (production == 1) {
 }
 
 $.getJSON(data_url, function(data) { //read data from source
-  //console.log(data);
-  document.getElementById('headline').innerHTML = data["Headline"]["Text"];
-  var link = data["Headline"]["MobileLink"]; //get mobile link
-  document.getElementById('moreinfo').innerHTML = "<a href="+link+" class=moreinfo>More info</a>"
-  data = data["DailyForecasts"]; //simplify the data
-  for (n=0; n<data.length; n++) {
-    var weekday = dayoftheweek(data[n]["Date"], language); //get the day of the week
-    //put data in HTML
-    document.getElementById('icon'+n).innerHTML = "<img src=img/icons/"+data[n]["Day"]["Icon"]+".svg alt="+data[n]["Day"]["IconPhrase"]+">";
-    document.getElementById('date'+n).innerHTML = weekday+" "+parseInt(data[n]["Date"].substr(8,2));
-    document.getElementById('phrase'+n).innerHTML = data[n]["Day"]["IconPhrase"];
-    document.getElementById('tempmin'+n).innerHTML = "<span class=tempmin-arrow>▼</span>"+data[n]["Temperature"]["Minimum"]["Value"].toFixed(1)+"°"+data[n]["Temperature"]["Minimum"]["Unit"];
-    document.getElementById('tempmax'+n).innerHTML = "<span class=tempmax-arrow>▲</span>"+data[n]["Temperature"]["Maximum"]["Value"].toFixed(1)+"°"+data[n]["Temperature"]["Maximum"]["Unit"];
-  }
+  console.log(data);
+
+	//simplify data
+	var title = data["Headline"]["Text"];
+	var mobilelink = data["Headline"]["MobileLink"];
+
+	//write data in HTML
+  document.getElementById("headline").innerHTML = title;
+  document.getElementById("moreinfo").innerHTML = "<a href="+mobilelink+" class=moreinfo>More info</a>";
+
+  for (n=0; n<5; n++) { //for every day...
+		//simplify data
+    var weekday = dayoftheweek(data["DailyForecasts"][n]["Date"], language); //get the day of the week
+		var monthday =  parseInt(data["DailyForecasts"][n]["Date"].substr(8,2));
+		var icon = data["DailyForecasts"][n]["Day"]["Icon"];
+		var iconphrase = data["DailyForecasts"][n]["Day"]["IconPhrase"];
+		var tempmin = data["DailyForecasts"][n]["Temperature"]["Minimum"]["Value"].toFixed(1);
+		var tempmax = data["DailyForecasts"][n]["Temperature"]["Maximum"]["Value"].toFixed(1);
+		var unit = data["DailyForecasts"][n]["Temperature"]["Minimum"]["Unit"];
+
+    //write data in HTML
+    document.getElementById('icon'+n).src = "img/icons/"+icon+".svg";
+    document.getElementById('date'+n).innerHTML = weekday+" "+monthday;
+    document.getElementById('phrase'+n).innerHTML = iconphrase;
+    document.getElementById('tempmin'+n).innerHTML = "<span class=tempmin-arrow>▼</span>"+tempmin+"°"+unit+"</span>";
+    document.getElementById('tempmax'+n).innerHTML = "<span class=tempmax-arrow> ▲</span>"+tempmax+"°"+unit+"</span>";
+
+	}
 });
 
 
